@@ -146,3 +146,36 @@ docker compose -f docker-compose.dev.yml exec web ./bin/rails db:prepare
 docker compose -f docker-compose.dev.yml run --rm -e RAILS_ENV=development web ./bin/rails console
 ```
 
+## **Makefile — atalhos úteis**
+
+Incluí um `Makefile` com atalhos comuns para facilitar o dia a dia de desenvolvimento. Você pode ver todos os alvos executando:
+
+```bash
+make help
+```
+
+Comandos mais usados:
+
+- **Iniciar os serviços (detached)**: `make up` (usa [docker-compose.dev.yml](docker-compose.dev.yml))
+- **Parar e remover containers**: `make down`
+- **Construir imagens**: `make build`
+- **Abrir console (container em execução)**: `make console`
+- **Console efêmero**: `make rconsole`
+- **Preparar banco de desenvolvimento**: `make db_prepare`
+- **Preparar banco de teste (evita EnvironmentMismatch)**: `make db_test_setup`
+- **Rodar testes**: `make test`
+- **Tailwind watcher**: `make css_watch`
+- **Abrir shell no container web**: `make shell`
+
+Exemplo rápido para preparar o banco de teste e rodar os testes:
+
+```bash
+# prepara o banco de teste (seta o env e carrega o schema)
+make db_test_setup
+
+# roda a suíte de testes
+make test
+```
+
+Os alvos do `Makefile` chamam `docker compose -f docker-compose.dev.yml` quando apropriado, portanto garanta que o Docker Compose esteja instalado.
+
