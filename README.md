@@ -109,3 +109,40 @@ docker compose -f docker-compose.dev.yml up --build
 Observações:
 - O `docker-compose.dev.yml` monta o código fonte em `/rails` dentro do container para facilitar desenvolvimento.
 - Se sua aplicação usa `config/master.key` ou `RAILS_MASTER_KEY`, adicione o valor no `.env.development.local` antes de subir.
+
+### Acessar o Rails Console via Docker
+
+Use um destes comandos para abrir o `rails console` conectado ao banco que está sendo executado pelo `docker-compose`:
+
+- Se o serviço `web` já estiver rodando (mantém o container em execução):
+
+```bash
+docker compose -f docker-compose.dev.yml exec web ./bin/rails console
+```
+
+- Para abrir um container efêmero (não precisa deixar o `web` em background):
+
+```bash
+docker compose -f docker-compose.dev.yml run --rm web ./bin/rails console
+```
+
+Dicas rápidas:
+
+- Subir apenas o banco se necessário:
+
+```bash
+docker compose -f docker-compose.dev.yml up -d db
+```
+
+- Garantir que o esquema/migrações estejam aplicados:
+
+```bash
+docker compose -f docker-compose.dev.yml exec web ./bin/rails db:prepare
+```
+
+- Forçar variáveis de ambiente temporárias ao rodar o console:
+
+```bash
+docker compose -f docker-compose.dev.yml run --rm -e RAILS_ENV=development web ./bin/rails console
+```
+
