@@ -2,14 +2,14 @@
 
 one:
   title: MyString
-  content: MyText
+  content: MyText content must be at least 10 chars
   status: 1
   active: false
   published_at: 2025-12-15 08:58:59
 
 two:
   title: MyString
-  content: MyText
+  content: MyText content must be at least 10 chars
   status: 1
   active: false
   published_at: 2025-12-15 08:58:59
