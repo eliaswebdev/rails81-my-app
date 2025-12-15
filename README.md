@@ -20,6 +20,10 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 - **Ruby 3.4.7** (Gerenciado via `asdf`)
 - **PostgreSQL** (Serviço de banco de dados rodando)
 - **Git**
+- **libvips** (Necessário para processamento de imagens do Active Storage)
+  - Ubuntu/Debian: `sudo apt install libvips`
+  - macOS: `brew install vips`
+
 
 ## 🚀 Como rodar o projeto localmente
 
