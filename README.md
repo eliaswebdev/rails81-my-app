@@ -91,3 +91,21 @@ kamal setup
 ```
 
 Consulte a [documentação do Kamal](https://kamal-deploy.org/) para mais detalhes pré-requisitos de deploy.
+
+## 🐳 Rodando com Docker (desenvolvimento)
+
+Existe um `docker-compose.dev.yml` preparado para desenvolvimento com serviços para o app e o PostgreSQL.
+
+1. Ajuste variáveis locais no arquivo `.env.development.local` (criado como exemplo).
+
+2. Construir a imagem e subir os serviços:
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+3. A aplicação ficará disponível em http://localhost:3000 e o banco em `localhost:5432`.
+
+Observações:
+- O `docker-compose.dev.yml` monta o código fonte em `/rails` dentro do container para facilitar desenvolvimento.
+- Se sua aplicação usa `config/master.key` ou `RAILS_MASTER_KEY`, adicione o valor no `.env.development.local` antes de subir.
