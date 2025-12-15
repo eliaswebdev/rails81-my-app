@@ -19,6 +19,7 @@ help:
 	@echo "  db_test_setup Prepare test DB (set env and load schema)"
 	@echo "  db_migrate   Run migrations"
 	@echo "  db_seed      Run seeds"
+	@echo "  db_reset     Reset DB (db:reset)"
 	@echo "  test         Run test suite inside web container"
 	@echo "  server       Start rails server (inside running web container)"
 	@echo "  css_watch    Tailwind CSS watcher (css service)"
@@ -69,6 +70,9 @@ db_migrate:
 db_seed:
 	$(COMPOSE) exec web $(RAILS) db:seed
 
+db_reset:
+	$(COMPOSE) exec web $(RAILS) db:reset
+
 test:
 	$(COMPOSE) exec web $(RAILS) test
 
@@ -80,3 +84,6 @@ css_watch:
 
 shell:
 	$(COMPOSE) exec web /bin/bash
+
+set_env:
+	$(COMPOSE) exec web $(RAILS) db:environment:set RAILS_ENV=development
